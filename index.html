@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Mathematics Course Hub</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- MathJax for LaTeX Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <!-- JSXGraph CSS and JS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    .jxgbox {
+      width: 100%;
+      height: 380px;
+      border-radius: 0.75rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
+
+  <!-- Header -->
+  <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="bg-indigo-700 p-2 rounded-lg">
+          <i data-lucide="book-open" class="w-6 h-6 text-indigo-200"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight">MathEd 548 Course Hub</h1>
+          <p class="text-xs text-indigo-200">Interactive Mathematics &amp; Dynamic Geometry</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <a href="https://github.com/bedprasad/MathEd548_01/releases/download/latest/main.pdf" target="_blank" class="inline-flex items-center px-3 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-xs font-semibold rounded-md shadow-sm transition">
+          <i data-lucide="file-down" class="w-4 h-4 mr-1.5"></i> Course PDF
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <div class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-4 gap-6">
+    
+    <!-- Sidebar / Unit Navigation -->
+    <aside class="lg:col-span-1 bg-white rounded-xl shadow-sm border border-slate-200 p-4 h-fit sticky top-24">
+      <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Course Curriculum</h2>
+      <div id="unit-nav" class="space-y-4">
+        <!-- Injected via JS -->
+      </div>
+    </aside>
+
+    <!-- Main Lesson Area -->
+    <main class="lg:col-span-3 space-y-6">
+      <div id="lesson-container">
+        <!-- Active Lesson Injected via JS -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-4 mt-12 text-center text-xs text-slate-500">
+    Interactive Course Module &bull; Powered by JSXGraph, MathJax, and GitHub Pages
+  </footer>
+
+  <script>
+    const courseData = {"Unit 1: Quadratic Functions": [{"Unit": "Unit 1: Quadratic Functions", "Topic_Name": "1.1 Graphing Quadratic Curves and Transformations", "HTML_Content": "<p>A quadratic function has a characteristic curved shape known as a <strong>parabola</strong>. The parameter <em>a</em> controls the width and vertical reflection of the curve.</p>", "LaTeX_Math": "Standard Form: $f(x) = ax^2 + bx + c$\n\nQuadratic Formula:\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$", "JSXGraph_Code": "var brd = JXG.JSXGraph.initBoard('jxgbox_1', {boundingbox: [-6, 6, 6, -6], axis:true, showNavigation: false});\nvar a = brd.create('slider', [[-4, 4], [-1, 4], [-3, 1, 3]], {name: 'a'});\nvar f = brd.create('functiongraph', [function(x){ return a.Value()*x*x; }], {strokeColor: '#2563eb', strokeWidth: 3});", "YouTube_Link": "https://www.youtube.com/watch?v=f15t0d6pkyM", "PDF_Link": "https://github.com/bedprasad/MathEd548_01/releases/download/latest/main.pdf", "SA_Question": "What is the vertex of the parabola defined by $y = (x - 3)^2 + 5$?", "SA_Answer": "The vertex is at $(3, 5)$ because the equation is in vertex form $y = a(x - h)^2 + k$.", "Quiz_Question": "If a quadratic equation has a discriminant $\\Delta = 0$, what does this tell us about its roots?", "Quiz_Options": "Two distinct real roots | Exactly one repeated real root | Two complex roots | No roots exist", "Quiz_Correct_Answer": "Exactly one repeated real root", "Quiz_Explanation": "When $b^2 - 4ac = 0$, the quadratic formula yields only a single real root $x = -b / (2a)$.", "index": 1, "yt_id": "f15t0d6pkyM"}, {"Unit": "Unit 1: Quadratic Functions", "Topic_Name": "1.2 Finding Roots and Factoring", "HTML_Content": "<p>Finding roots means determining where the curve crosses the x-axis ($f(x) = 0$).</p>", "LaTeX_Math": "Roots are given by:\n$$x_1, x_2 = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$", "JSXGraph_Code": "var brd = JXG.JSXGraph.initBoard('jxgbox_2', {boundingbox: [-5, 5, 5, -5], axis:true, showNavigation: false});\nvar p1 = brd.create('point', [-2, 0], {name: 'Root 1', color: 'red'});\nvar p2 = brd.create('point', [2, 0], {name: 'Root 2', color: 'red'});\nvar f = brd.create('functiongraph', [function(x){ return (x - p1.X()) * (x - p2.X()); }], {strokeColor: '#16a34a', strokeWidth: 2.5});", "YouTube_Link": "https://www.youtube.com/watch?v=qeByhTF8WEw", "PDF_Link": "https://github.com/bedprasad/MathEd548_01/releases/download/latest/main.pdf", "SA_Question": "Solve for $x$: $x^2 - 5x + 6 = 0$.", "SA_Answer": "Factoring gives $(x - 2)(x - 3) = 0$, so $x = 2$ or $x = 3$.", "Quiz_Question": "What are the roots of $f(x) = x^2 - 9$?", "Quiz_Options": "x = 3 only | x = -3 only | x = 3 and x = -3 | x = 9 and x = -9", "Quiz_Correct_Answer": "x = 3 and x = -3", "Quiz_Explanation": "Difference of squares: $x^2 - 9 = (x - 3)(x + 3) = 0 \\implies x = \\pm 3$.", "index": 2, "yt_id": "qeByhTF8WEw"}], "Unit 2: Trigonometric Functions": [{"Unit": "Unit 2: Trigonometric Functions", "Topic_Name": "2.1 The Unit Circle and Sine Waves", "HTML_Content": "<p>The sine function describes smooth periodic oscillation defined on the unit circle coordinates.</p>", "LaTeX_Math": "General Wave Equation:\n$$y = A \\sin(B(x - C)) + D$$\nwhere $A$ is amplitude and $\\text{Period} = \\frac{2\\pi}{B}$.", "JSXGraph_Code": "var brd = JXG.JSXGraph.initBoard('jxgbox_3', {boundingbox: [-1, 3, 7, -3], axis:true, showNavigation: false});\nvar amp = brd.create('slider', [[1, 2.2], [4, 2.2], [0.5, 1, 2.5]], {name: 'Amplitude'});\nvar f = brd.create('functiongraph', [function(x){ return amp.Value() * Math.sin(x); }], {strokeColor: '#9333ea', strokeWidth: 3});", "YouTube_Link": "https://www.youtube.com/watch?v=a_7SR66YwBQ", "PDF_Link": "https://github.com/bedprasad/MathEd548_01/releases/download/latest/main.pdf", "SA_Question": "What is the period of $y = \\sin(2x)$?", "SA_Answer": "The period is $\\frac{2\\pi}{2} = \\pi$.", "Quiz_Question": "What is the maximum value of $f(x) = 3\\sin(x) + 2$?", "Quiz_Options": "3 | 5 | 2 | 1", "Quiz_Correct_Answer": "5", "Quiz_Explanation": "The maximum of $\\sin(x)$ is $1$, so $\\max f(x) = 3(1) + 2 = 5$.", "index": 3, "yt_id": "a_7SR66YwBQ"}]};
+    let activeUnit = Object.keys(courseData)[0];
+    let activeTopicIdx = 0;
+
+    function renderNav() {
+      const nav = document.getElementById('unit-nav');
+      nav.innerHTML = '';
+      
+      Object.keys(courseData).forEach((unitKey, uIdx) => {
+        const unitDiv = document.createElement('div');
+        unitDiv.className = 'border-b border-slate-100 pb-3 last:border-0 last:pb-0';
+        
+        const title = document.createElement('div');
+        title.className = 'font-semibold text-sm text-slate-700 mb-2 flex items-center justify-between cursor-pointer';
+        title.innerHTML = `<span>${unitKey}</span>`;
+        unitDiv.appendChild(title);
+
+        const list = document.createElement('ul');
+        list.className = 'space-y-1 pl-2';
+
+        courseData[unitKey].forEach((topic, tIdx) => {
+          const li = document.createElement('li');
+          const isSelected = (unitKey === activeUnit && tIdx === activeTopicIdx);
+          li.className = `text-xs px-2.5 py-1.5 rounded-lg cursor-pointer transition flex items-center justify-between ${
+            isSelected ? 'bg-indigo-50 text-indigo-700 font-semibold border-l-4 border-indigo-600' : 'text-slate-600 hover:bg-slate-50'
+          }`;
+          li.innerHTML = `<span>${topic.Topic_Name}</span>`;
+          li.onclick = () => {
+            activeUnit = unitKey;
+            activeTopicIdx = tIdx;
+            renderNav();
+            renderLesson();
+          };
+          list.appendChild(li);
+        });
+
+        unitDiv.appendChild(list);
+        nav.appendChild(unitDiv);
+      });
+      lucide.createIcons();
+    }
+
+    function renderLesson() {
+      const container = document.getElementById('lesson-container');
+      const topic = courseData[activeUnit][activeTopicIdx];
+      
+      const boxId = `jxgbox_${topic.index}`;
+      
+      let quizOptionsHtml = '';
+      if (topic.Quiz_Options) {
+        const opts = topic.Quiz_Options.split('|').map(o => o.trim());
+        quizOptionsHtml = opts.map((opt, i) => `
+          <label class="flex items-center space-x-3 p-2.5 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer hover:bg-indigo-50 transition">
+            <input type="radio" name="quiz_opt_${topic.index}" value="${opt.replace(/"/g, '&quot;')}" class="text-indigo-600 focus:ring-indigo-500">
+            <span class="text-sm text-slate-700">${opt}</span>
+          </label>
+        `).join('');
+      }
+
+      container.innerHTML = `
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-6">
+          
+          <!-- Topic Header -->
+          <div class="border-b border-slate-100 pb-4">
+            <div class="text-xs font-semibold text-indigo-600 tracking-wide uppercase mb-1">${activeUnit}</div>
+            <h2 class="text-2xl font-bold text-slate-800">${topic.Topic_Name}</h2>
+          </div>
+
+          <!-- HTML Content -->
+          ${topic.HTML_Content ? `
+            <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed text-sm">
+              ${topic.HTML_Content}
+            </div>
+          ` : ''}
+
+          <!-- LaTeX Math Section -->
+          ${topic.LaTeX_Math ? `
+            <div class="bg-indigo-50/50 border border-indigo-100 rounded-xl p-4 text-slate-800">
+              <div class="text-xs font-bold text-indigo-800 uppercase tracking-wider mb-2 flex items-center">
+                <i data-lucide="function-square" class="w-4 h-4 mr-1.5"></i> Mathematical Formulation
+              </div>
+              <div class="math-content whitespace-pre-wrap text-sm leading-loose">
+                ${topic.LaTeX_Math}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Interactive JSXGraph Simulation -->
+          ${topic.JSXGraph_Code ? `
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center">
+                  <i data-lucide="sparkles" class="w-4 h-4 mr-1.5 text-amber-500"></i> Interactive Graph Simulation
+                </span>
+                <span class="text-xs text-slate-400">Drag points &amp; sliders to explore</span>
+              </div>
+              <div id="${boxId}" class="jxgbox"></div>
+            </div>
+          ` : ''}
+
+          <!-- YouTube Video Embed -->
+          ${topic.yt_id ? `
+            <div class="space-y-2">
+              <div class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center">
+                <i data-lucide="youtube" class="w-4 h-4 mr-1.5 text-red-500"></i> Video Lecture
+              </div>
+              <div class="aspect-video w-full rounded-xl overflow-hidden shadow-inner bg-slate-900">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/${topic.yt_id}" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- PDF Reference Link -->
+          ${topic.PDF_Link ? `
+            <div class="flex items-center justify-between p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+              <div class="flex items-center space-x-3">
+                <div class="p-2 bg-red-100 text-red-600 rounded-lg">
+                  <i data-lucide="file-text" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-slate-700">Course Notes &amp; Derivations</div>
+                  <div class="text-xs text-slate-500">Download the latest compiled PDF for this module</div>
+                </div>
+              </div>
+              <a href="${topic.PDF_Link}" target="_blank" class="px-3.5 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 font-semibold text-xs rounded-lg shadow-sm transition">
+                Open PDF
+              </a>
+            </div>
+          ` : ''}
+
+          <!-- Self Assessment Question -->
+          ${topic.SA_Question ? `
+            <div class="border border-slate-200 rounded-xl p-5 bg-gradient-to-br from-slate-50 to-white">
+              <div class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2 flex items-center">
+                <i data-lucide="help-circle" class="w-4 h-4 mr-1.5"></i> Self-Assessment Prompt
+              </div>
+              <p class="text-sm font-medium text-slate-800 mb-3">${topic.SA_Question}</p>
+              <button onclick="toggleAnswer('sa_ans_${topic.index}')" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition flex items-center">
+                <i data-lucide="eye" class="w-3.5 h-3.5 mr-1"></i> Toggle Solution
+              </button>
+              <div id="sa_ans_${topic.index}" class="hidden mt-3 p-3 bg-indigo-50/70 border border-indigo-100 rounded-lg text-xs text-slate-700 leading-relaxed">
+                ${topic.SA_Answer}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Interactive Quiz -->
+          ${topic.Quiz_Question ? `
+            <div class="border border-indigo-100 bg-indigo-50/30 rounded-xl p-5 space-y-4">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold text-indigo-700 uppercase tracking-wider flex items-center">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 mr-1.5"></i> Knowledge Check Quiz
+                </span>
+              </div>
+              <p class="text-sm font-semibold text-slate-800">${topic.Quiz_Question}</p>
+              <div class="space-y-2">
+                ${quizOptionsHtml}
+              </div>
+              <button onclick="checkQuizAnswer(${topic.index}, '${encodeURIComponent(topic.Quiz_Correct_Answer)}', '${encodeURIComponent(topic.Quiz_Explanation)}')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs rounded-lg shadow-sm transition">
+                Check Answer
+              </button>
+              <div id="quiz_feedback_${topic.index}" class="hidden text-xs p-3 rounded-lg"></div>
+            </div>
+          ` : ''}
+
+        </div>
+      `;
+
+      lucide.createIcons();
+      if (window.MathJax) {
+        MathJax.typesetPromise([container]);
+      }
+
+      // Execute JSXGraph Script if present
+      if (topic.JSXGraph_Code) {
+        try {
+          const scriptFn = new Function(topic.JSXGraph_Code);
+          setTimeout(() => {
+            scriptFn();
+          }, 50);
+        } catch (e) {
+          console.error("JSXGraph Error:", e);
+        }
+      }
+    }
+
+    function toggleAnswer(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('hidden');
+    }
+
+    function checkQuizAnswer(index, encCorrect, encExp) {
+      const correct = decodeURIComponent(encCorrect).trim();
+      const explanation = decodeURIComponent(encExp);
+      const selected = document.querySelector(`input[name="quiz_opt_${index}"]:checked`);
+      const feedback = document.getElementById(`quiz_feedback_${index}`);
+      
+      feedback.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-200', 'bg-red-50', 'text-red-800', 'border-red-200');
+      
+      if (!selected) {
+        feedback.className = 'text-xs p-3 rounded-lg border bg-amber-50 text-amber-800 border-amber-200';
+        feedback.innerHTML = '<strong>Please select an option first.</strong>';
+        return;
+      }
+      
+      if (selected.value.trim() === correct) {
+        feedback.className = 'text-xs p-3 rounded-lg border bg-emerald-50 text-emerald-800 border-emerald-200';
+        feedback.innerHTML = `<strong>✔ Correct!</strong> ${explanation}`;
+      } else {
+        feedback.className = 'text-xs p-3 rounded-lg border bg-red-50 text-red-800 border-red-200';
+        feedback.innerHTML = `<strong>✖ Not quite.</strong> The correct answer is <em>${correct}</em>.<br>${explanation}`;
+      }
+      
+      if (window.MathJax) {
+        MathJax.typesetPromise([feedback]);
+      }
+    }
+
+    // Init
+    window.addEventListener('DOMContentLoaded', () => {
+      renderNav();
+      renderLesson();
+    });
+  </script>
+</body>
+</html>
